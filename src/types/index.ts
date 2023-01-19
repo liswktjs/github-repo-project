@@ -16,8 +16,8 @@ export interface SearchItemType {
 }
 
 export interface SearchResultType {
-	totalCount: number;
-	items: [];
+	total_count: number;
+	items: SearchItemType[];
 }
 
 export interface LabelItemType {
