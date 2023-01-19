@@ -29,7 +29,12 @@ const RepoCard = ({ repo, onRepoAddButtonClick }: RepoCardProps) => {
 				</UserInfoContainer>
 
 				<ArticleInfoContainer>
-					<Badge badgeContent={repo.open_issues_count} color="primary">
+					<Badge
+						badgeContent={
+							repo.open_issues_count === 0 ? '0' : repo.open_issues_count
+						}
+						color="primary"
+					>
 						<IssueContent>open issue</IssueContent>
 					</Badge>
 
@@ -51,10 +56,19 @@ const RepoInfoContainer = styled.div`
 	margin: 0 20px 30px 20px;
 `;
 
-const RepoTitle = styled.h3``;
+const RepoTitle = styled.h3`
+	width: 95%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+`;
 
 const RepoDescription = styled.div`
-	min-height: 100px;
+	height: 100px;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	word-break: keep-all;
 	overflow: hidden;
 	text-overflow: ellipsis;
 `;
