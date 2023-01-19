@@ -34,8 +34,5 @@ export interface IssueItemType {
 	user: OwnerType;
 	labels: LabelItemType[];
 	state: string;
-	assignees: string[];
 	comments: number;
-	updated_at: string;
-	body: string;
 }
