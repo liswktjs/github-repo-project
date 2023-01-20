@@ -19,22 +19,12 @@ const useGetSearchRepositories = () => {
 		mutationKey: ['repo'],
 	});
 
-	const handleSearchRepoEvent = ({
-		target,
-		pageNumber,
-	}: {
-		target: string;
-		pageNumber: number;
-	}) => {
-		searchRepo({ searchTarget: target, pageNumber });
-	};
-
 	return {
 		repoSearchResult,
+		searchRepo,
 		isRepoSearchLoading,
 		isRepoSearchError,
 		isRepoSearchSuccess,
-		handleSearchRepoEvent,
 	};
 };
 

@@ -10,7 +10,11 @@ const Template: Story<SearchBarProps> = (args) => <SearchBar {...args} />;
 
 export const DefaultSearchBar = Template.bind({});
 DefaultSearchBar.args = {
-	onSearchButtonClick: (searchTarget: string) => {
-		console.log(searchTarget);
+	searchTarget: 'search',
+	setSearchTarget: () => {
+		console.log('입력');
+	},
+	onSearchButtonClick: () => {
+		console.log('검색');
 	},
 };

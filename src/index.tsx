@@ -12,9 +12,10 @@ const root = createRoot(document.getElementById('root') as HTMLDivElement);
 export const queryClient = new QueryClient();
 
 root.render(
-	<BrowserRouter>
-		<QueryClientProvider client={queryClient} />
-		<CssBaseline />
-		<App />
-	</BrowserRouter>,
+	<QueryClientProvider client={queryClient}>
+		<BrowserRouter>
+			<CssBaseline />
+			<App />
+		</BrowserRouter>
+	</QueryClientProvider>,
 );

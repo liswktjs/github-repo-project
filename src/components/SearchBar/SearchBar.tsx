@@ -1,42 +1,55 @@
-import { FormEvent, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
+import styled from '@emotion/styled';
 
 export interface SearchBarProps {
-	onSearchButtonClick: (searchTarget: string) => void;
+	searchTarget: string;
+	setSearchTarget: Dispatch<SetStateAction<string>>;
+	onSearchButtonClick: () => void;
 }
 
-const SearchBar = ({ onSearchButtonClick }: SearchBarProps) => {
-	const [searchInput, setSearchInput] = useState('');
-
+const SearchBar = ({
+	searchTarget,
+	setSearchTarget,
+	onSearchButtonClick,
+}: SearchBarProps) => {
 	const onFormSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		onSearchButtonClick(searchInput);
+		onSearchButtonClick();
 	};
 
 	return (
-		<form onSubmit={onFormSubmit}>
+		<FormContainer onSubmit={onFormSubmit}>
 			<OutlinedInput
 				placeholder="repository 이름을 입력해주세요"
-				value={searchInput}
+				value={searchTarget}
 				onChange={(e) => {
-					setSearchInput(e.target.value);
+					setSearchTarget(e.target.value);
 				}}
-				sx={{ width: 500, marginRight: 5 }}
+				sx={{ width: 500 }}
 			/>
 			<IconButton
 				aria-label="검색버튼"
 				type="submit"
 				onClick={() => {
-					onSearchButtonClick(searchInput);
+					onSearchButtonClick();
 				}}
 			>
 				<SearchIcon sx={{ fontSize: 35 }} />
 			</IconButton>
-		</form>
+		</FormContainer>
 	);
 };
+
+const FormContainer = styled.form`
+	display: flex;
+	justify-content: space-between;
+
+	min-width: 600px;
+	margin-bottom: 20px;
+`;
 
 export default SearchBar;
