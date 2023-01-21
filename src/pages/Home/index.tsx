@@ -8,6 +8,8 @@ import { Pagination } from '@mui/material';
 
 import useGetSearchRepositories from '@/hooks/useGetSearchRepositories';
 
+import store, { isDuplicateStoreExist } from '@/store';
+
 import { PER_PAGE_COUNT } from '@/constants';
 
 import styled from '@emotion/styled';
@@ -59,8 +61,9 @@ const Home = () => {
 						<RepoCard
 							key={repoItem.id}
 							repo={repoItem}
+							isSaved={isDuplicateStoreExist(repoItem.full_name)}
 							onRepoAddButtonClick={() => {
-								console.log('search');
+								store.toggleRepo({ fullName: repoItem.full_name });
 							}}
 						/>
 					))}

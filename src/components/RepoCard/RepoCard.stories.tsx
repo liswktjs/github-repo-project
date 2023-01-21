@@ -27,4 +27,5 @@ DefaultRepoCard.args = {
 	onRepoAddButtonClick: () => {
 		console.log('repo저장하는 버튼 클릭');
 	},
+	isSaved: true,
 };

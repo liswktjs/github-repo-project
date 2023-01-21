@@ -1,5 +1,8 @@
+import { useState } from 'react';
+
 import { Avatar, Badge, Card, IconButton } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 import styled from '@emotion/styled';
 
@@ -8,12 +11,17 @@ import { SearchItemType } from '@/types';
 export interface RepoCardProps {
 	repo: SearchItemType;
 	onRepoAddButtonClick: () => void;
+	isSaved: boolean;
 }
 
-const RepoCard = ({ repo, onRepoAddButtonClick }: RepoCardProps) => {
+const RepoCard = ({ repo, isSaved, onRepoAddButtonClick }: RepoCardProps) => {
+	const [isSavedRepo, setIsSavedRepo] = useState(isSaved);
+
 	return (
 		<Card sx={{ width: 500, height: 250 }}>
-			<RepoInfoContainer>
+			<RepoInfoContainer
+				onClick={() => window.open(`${repo.html_url}`, '_blank')}
+			>
 				<RepoTitle>{repo.full_name}</RepoTitle>
 				<RepoDescription>{repo.description}</RepoDescription>
 			</RepoInfoContainer>
@@ -40,9 +48,16 @@ const RepoCard = ({ repo, onRepoAddButtonClick }: RepoCardProps) => {
 
 					<IconButton
 						aria-label="repository 저장하기"
-						onClick={onRepoAddButtonClick}
+						onClick={() => {
+							onRepoAddButtonClick();
+							setIsSavedRepo(!isSavedRepo);
+						}}
 					>
-						<AddCircleOutlineIcon sx={{ width: 25, height: 25 }} />
+						{isSavedRepo ? (
+							<BookmarkOutlinedIcon sx={{ width: 25, height: 25 }} />
+						) : (
+							<BookmarkBorderIcon sx={{ width: 25, height: 25 }} />
+						)}
 					</IconButton>
 				</ArticleInfoContainer>
 			</UnderLineInfoContainer>

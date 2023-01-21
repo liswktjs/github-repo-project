@@ -5,9 +5,10 @@
 - [x] HOME화면에서 검색창을 볼 수 있다
 - [x] 검색창에 Repository명을 입력해서 Repository를 검색할 수 있다.
 - [x] 검색된 Repository들에 대해서 볼 수 있다
-- [ ] 검색된 Public Repository를 등록할 수 있다.
-  - [ ] 등록 개수는 최대 4개로 제한하며, 최대 개수 초과 등록 시 이를 스낵브를 활용해 사용자에게 알려준다.
-  - [ ] LocalStorage를 활용하여 등록한 repository에 대한 내용들을 저장한다
+- [x] 검색된 Public Repository를 등록할 수 있다.
+  - [x] 등록 개수는 최대 4개로 제한하며, 최대 개수 초과 등록 시 이를 스낵브를 활용해 사용자에게 알려준다.
+  - [x] LocalStorage를 활용하여 등록한 repository에 대한 내용들을 저장한다
+- [x] Repository의 이름과 설명 부분을 클릭하면, 새 탭을 열어 Repository의 창을 보여준다
 
 ### Repository Page
 
