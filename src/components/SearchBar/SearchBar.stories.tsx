@@ -1,20 +1,24 @@
-import { Meta, Story } from '@storybook/react';
-import SearchBar, { SearchBarProps } from './SearchBar';
+import { Meta } from '@storybook/react';
+import { useState } from 'react';
+import SearchBar from './SearchBar';
 
 export default {
 	title: 'SearchBar',
 	component: SearchBar,
 } as Meta;
 
-const Template: Story<SearchBarProps> = (args) => <SearchBar {...args} />;
+const Template = () => {
+	const [searchTarget, setSearchTarget] = useState('');
+	const onSearchButtonClick = () => {
+		console.log('검색버튼 클릭');
+	};
+	return (
+		<SearchBar
+			searchTarget={searchTarget}
+			setSearchTarget={setSearchTarget}
+			onSearchButtonClick={onSearchButtonClick}
+		/>
+	);
+};
 
 export const DefaultSearchBar = Template.bind({});
-DefaultSearchBar.args = {
-	searchTarget: 'search',
-	setSearchTarget: () => {
-		console.log('입력');
-	},
-	onSearchButtonClick: () => {
-		console.log('검색');
-	},
-};
