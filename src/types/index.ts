@@ -4,7 +4,7 @@ export interface OwnerType {
 	html_url: string;
 }
 
-export interface SearchItemType {
+export interface RepoItemType {
 	id: number;
 	full_name: string;
 	owner: OwnerType;
@@ -15,9 +15,9 @@ export interface SearchItemType {
 	updated_at: string;
 }
 
-export interface SearchResultType {
+export interface RepoSearchResultType {
 	total_count: number;
-	items: SearchItemType[];
+	items: RepoItemType[];
 }
 
 export interface LabelItemType {
@@ -35,4 +35,7 @@ export interface IssueItemType {
 	labels: LabelItemType[];
 	state: string;
 	comments: number;
+	pull_request?: Object;
 }
+
+export type IssueSearchResultType = IssueItemType[];

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { searchRepositories } from '@/api/search';
 
-import { SearchResultType } from '@/types';
+import { RepoSearchResultType } from '@/types';
 
 const useGetSearchRepositories = () => {
 	const {
@@ -11,7 +11,7 @@ const useGetSearchRepositories = () => {
 		isSuccess: isRepoSearchSuccess,
 		mutate: searchRepo,
 	} = useMutation<
-		SearchResultType,
+		RepoSearchResultType,
 		Error,
 		{ searchTarget: string; pageNumber: number }
 	>({
