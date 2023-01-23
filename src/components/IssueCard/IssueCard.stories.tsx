@@ -35,9 +35,7 @@ DefaultIssueCard.args = {
 		],
 		state: 'closed',
 		comments: 0,
+		pull_request: {},
 	},
 	repoName: '2022-gong-seek',
-	onIssueLinkClick: () => {
-		console.log('이슈 클릭 이벤트 ');
-	},
 };

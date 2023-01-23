@@ -7,12 +7,14 @@ import { IssueItemType } from '@/types';
 export interface IssueCardProps {
 	issue: IssueItemType;
 	repoName: string;
-	onIssueLinkClick: () => void;
 }
 
-const IssueCard = ({ issue, repoName, onIssueLinkClick }: IssueCardProps) => {
+const IssueCard = ({ issue, repoName }: IssueCardProps) => {
 	return (
-		<Card sx={{ width: 500, minHeight: 250 }}>
+		<Card
+			sx={{ width: 500, minHeight: 250 }}
+			onClick={() => window.open(`${issue.html_url}`, '_blank')}
+		>
 			<IssueTitle>{issue.title}</IssueTitle>
 			<RepoName>
 				<label>repository:</label>
@@ -38,6 +40,7 @@ const IssueCard = ({ issue, repoName, onIssueLinkClick }: IssueCardProps) => {
 					<UserName>{issue.user.login}</UserName>
 				</UserInfoContainer>
 				<StateContainer>
+					{'pull_request' in issue && <div>PR</div>}
 					<div>comment</div>
 					<span>{issue.comments}</span>
 					<span>state</span>
@@ -79,6 +82,7 @@ const RepoName = styled.div`
 const LabelListContainer = styled.div`
 	display: flex;
 	gap: 10px;
+	min-height: 80px;
 	margin: 20px;
 `;
 
