@@ -6,10 +6,10 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 import styled from '@emotion/styled';
 
-import { SearchItemType } from '@/types';
+import { RepoItemType } from '@/types';
 
 export interface RepoCardProps {
-	repo: SearchItemType;
+	repo: RepoItemType;
 	onRepoAddButtonClick: () => void;
 	isSaved: boolean;
 }
