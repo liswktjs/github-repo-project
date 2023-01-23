@@ -10,19 +10,17 @@
   - [x] LocalStorage를 활용하여 등록한 repository에 대한 내용들을 저장한다
 - [x] Repository의 이름과 설명 부분을 클릭하면, 새 탭을 열어 Repository의 창을 보여준다
 
-### Repository Page
-
-- [ ] 등록된 각각의 public repository에 대해서 볼 수 있다
-- [ ] 등록된 Repository를 삭제할 수 있다.
-
 ### Issue Page
 
-- [ ] public repository를 클릭하면 issue들을 볼 수 있다
-- [ ] Issue Item들을 보여준다
-  - [ ] 등록된 각각의 Public Repository의 issue를 한 페이지에서 모아서 볼 수 있다.
+- [x] 등록된 각각의 public repository에 대해서 볼 수 있다
+- [x] 등록된 Repository를 삭제할 수 있다.
+
+- [x] public repository를 클릭하면 issue들을 볼 수 있다
+- [x] Issue Item들을 보여준다
+  - [x] 등록된 각각의 Public Repository의 issue를 한 페이지에서 모아서 볼 수 있다.
   - [x] 각 issue 마다 제목, Repository 명이 보이도록 한다.
-  - [ ] 해당 issue를 클릭하면 새 탭으로 Github의 상세 페이지로 이동할 수 있다.
-  - [ ] 페이지네이션을 통해서 계속해서 issue를 모아서 볼 수 있다.
+  - [x] 해당 issue를 클릭하면 새 탭으로 Github의 상세 페이지로 이동할 수 있다.
+  - [x] 페이지네이션을 통해서 계속해서 issue를 모아서 볼 수 있다.
 
 ### 유의점
 
@@ -34,3 +32,30 @@ message: "Only the first 1000 search results are available"
 ```
 
 - 시간당 60회의 요청만 보낼 수 있음
+
+### issue api 관련 문제
+
+#### /repos/{owner}/{repo}/issues
+
+- 해당 api의 경우, total_count에 대한 응답값을 주지 않는다
+- Issue를 조회할 경우, pr과 함께 조회된다
+- pr일 경우 pull_request 의 속성이 존재한다
+
+#### /search/issues
+
+- 해당 api의 경우, totalCount 값을 제공해주지만, repository에만 속한 issue가 정확히 조회되지 않는다
+  - q에 들어가는 단어와 유사한 경우에도 issue로 검색 결과를 돌려주기 때문에, total_count가 실제 해당 repository의 issue 총 개수과 일치하지 않는다
+
+=> 결론
+
+- repo에 속한 issue들을 정확하게 볼 수 있는 것이 중요하다고 판단하였습니다
+  그래서, /repos/{owner}/{repo}/issues 를 사용하여 이슈를 조회하기로 하였습니다
+
+  - PR의 경우,
+
+    - PR인 것을 모두 제외하면 page 조회마다 유저에게 보여지는 item의 개수가 랜덤하게 보여져 혼란을 일으킬 수 있다고 고려하여, PR인 경우 PR로 표시하기로 결정하였습니다
+
+  - Pagination의 경우,
+
+    - Repository에서의 Pagination과 달리 처음 부터 완성된 totalCount를 주는 것이 아닌 다음 버튼을 눌렀을 때마다, 응답값으로 오는 값의 개수를 아래의 기준으로 판단해 숫자를 업데이트 해나갑니다
+      - 현재의 응답값의 이슈 개수가 10개일 때에 다음 페이지가 있는 것으로 임의로 판단하여 Pagination상에 보여지는 totalCount의 숫자를 더합니다
