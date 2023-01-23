@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Tab, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
@@ -9,17 +9,22 @@ import styled from '@emotion/styled';
 
 const Header = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
 
-	const [tab, setTab] = useState<'HOME' | 'REPO' | 'ISSUE'>('HOME');
+	const [tab, setTab] = useState<'HOME' | 'ISSUE'>('HOME');
+
+	useEffect(() => {
+		if (location.pathname === '/') {
+			setTab('HOME');
+		}
+		if (location.pathname === '/issues') {
+			setTab('ISSUE');
+		}
+	}, [location]);
 
 	const onHomeTabClick = () => {
 		setTab('HOME');
 		navigate('/');
-	};
-
-	const onRepositoryTabClick = () => {
-		setTab('REPO');
-		navigate('/repository');
 	};
 
 	const onIssueTabClick = () => {
@@ -55,12 +60,6 @@ const Header = () => {
 					label="HOME"
 					value="HOME"
 					onClick={onHomeTabClick}
-					sx={{ color: 'black' }}
-				/>
-				<Tab
-					label="REPO"
-					value="REPO"
-					onClick={onRepositoryTabClick}
 					sx={{ color: 'black' }}
 				/>
 				<Tab
