@@ -17,20 +17,14 @@ const Template = () => {
 		'woowacourse-teams/2022-gong-seek',
 	];
 
-	const onIssueSearchButtonClick = () => {
-		console.log('이슈보기 버튼 클릭');
-	};
-	const onDeleteRepoButtonClick = () => {
-		console.log('저장소 삭제 버튼 클릭');
-	};
-
 	return (
 		<RepoSlider
 			repoList={repoList}
-			onIssueSearchButtonClick={onIssueSearchButtonClick}
+			handleSearchIssues={() => {
+				console.log('이슈 검색');
+			}}
 			currentRepoIndex={currentRepoIndex}
 			setCurrentRepoIndex={setCurrentRepoIndex}
-			onDeleteRepoButtonClick={onDeleteRepoButtonClick}
 		/>
 	);
 };

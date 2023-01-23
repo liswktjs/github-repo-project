@@ -2,25 +2,23 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import { Card, IconButton } from '@mui/material';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import styled from '@emotion/styled';
+import store from '@/store';
 
 export interface RepoSliderProps {
 	repoList: string[] | [];
 	currentRepoIndex: number;
 	setCurrentRepoIndex: Dispatch<SetStateAction<number>>;
-	onIssueSearchButtonClick: () => void;
-	onDeleteRepoButtonClick: () => void;
+	handleSearchIssues: (searchTarget: string) => void;
 }
 
 const RepoSlider = ({
 	repoList,
 	currentRepoIndex,
 	setCurrentRepoIndex,
-	onIssueSearchButtonClick,
-	onDeleteRepoButtonClick,
+	handleSearchIssues,
 }: RepoSliderProps) => {
 	const [isLeftAvailable, setIsLeftAvailable] = useState(false);
 	const [isRightAvailable, setIsRightAvailable] = useState(false);
@@ -51,10 +49,12 @@ const RepoSlider = ({
 
 	const onLeftButtonClick = () => {
 		setCurrentRepoIndex(currentRepoIndex - 1);
+		handleSearchIssues(repoList[currentRepoIndex - 1]);
 	};
 
 	const onRightButtonClick = () => {
 		setCurrentRepoIndex(currentRepoIndex + 1);
+		handleSearchIssues(repoList[currentRepoIndex + 1]);
 	};
 
 	return (
@@ -72,12 +72,17 @@ const RepoSlider = ({
 						<Title>#{currentRepoIndex + 1}번 Repository</Title>
 						<p>{repoList[currentRepoIndex]}</p>
 						<ButtonContainer>
-							<span>이슈</span>
-							<IconButton onClick={onIssueSearchButtonClick}>
-								<RemoveRedEyeIcon />
-							</IconButton>
 							<IconButton>
-								<DeleteOutlineIcon onClick={onDeleteRepoButtonClick} />
+								<DeleteOutlineIcon
+									onClick={() => {
+										if (window.confirm('정말 삭제하시겠습니까?')) {
+											store.toggleRepo({
+												fullName: repoList[currentRepoIndex],
+											});
+											window.location.reload();
+										}
+									}}
+								/>
 							</IconButton>
 						</ButtonContainer>
 					</RepoContent>
@@ -103,6 +108,8 @@ const Container = styled.section`
 	display: flex;
 	width: 100%;
 	align-items: center;
+	justify-content: center;
+	margin: 30px 0;
 `;
 
 const RepoContent = styled.div`
