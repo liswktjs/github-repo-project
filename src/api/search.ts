@@ -17,17 +17,16 @@ export const searchRepositories = async ({
 };
 
 export interface searchRepositoriesIssuesProps {
-	owner: string;
-	repo: string;
+	searchTarget: string;
 	pageNumber: number;
 }
 
-// export const searchRepositoriesIssues = async ({
-// 	owner,
-// 	repo,
-// 	pageNumber,
-// }: searchRepositoriesIssuesProps) => {
-// 	const response = await fetch(
-// 		`${BASE_URL}/repos/${owner}/${repo}/issues?state=all&per_page=10&page=${pageNumber}`,
-// 	);
-// };
+export const searchRepositoriesIssues = async ({
+	searchTarget,
+	pageNumber,
+}: searchRepositoriesIssuesProps) => {
+	const response = await fetch(
+		`${BASE_URL}/repos/${searchTarget}/issues?state=all&per_page=10&page=${pageNumber}`,
+	);
+	return response.json();
+};
