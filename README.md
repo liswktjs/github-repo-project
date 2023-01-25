@@ -18,9 +18,10 @@
   - [x] 각 issue 마다 제목, Repository 명이 보이도록 한다.
   - [x] 해당 issue를 클릭하면 새 탭으로 Github의 상세 페이지로 이동할 수 있다.
   - [x] 페이지네이션을 통해서 계속해서 issue를 모아서 볼 수 있다.
+    - [x] Promise all를 통해 받아온 응닶값의 총 개수를 통해 페이지네이션을 구현한다
 
 - [x] Promise all을 활용하여 repository에 등록된 값들을 모두 불러와 값을 섞어 랜덤하게 보여준다
-- [x] repository가 localstorage상에 저장되어 있지 않은 경우 all-issues페이지로의 이동을 막는다
+- [x] repository가 local storage상에 저장되어 있지 않은 경우 all-issues페이지로의 이동을 막는다
 - [x] 만일 등록된 이슈가 없다면 없다는 안내메세지를 보여준다
 
 ### Issue Page (각각의 레포마다 이슈 보여주기)
@@ -34,7 +35,7 @@
   - [x] 해당 issue를 클릭하면 새 탭으로 Github의 상세 페이지로 이동할 수 있다.
   - [x] 페이지네이션을 통해서 계속해서 issue를 모아서 볼 수 있다.
 
-### issue api 관련 문제
+#### issue api 관련 문제
 
 #### /repos/{owner}/{repo}/issues
 
@@ -71,3 +72,9 @@ message: "Only the first 1000 search results are available"
 ```
 
 - 시간당 60회의 요청만 보낼 수 있음
+
+### 추가 구현 사항
+
+- [x] 반응형 화면 구현
+- [x] 응답값을 받아오는 동안 보여줄 skeleton 구현
+- [x] 개발 과정에서 가장 많이 발생했던 요청 횟수를 넘어 발생하는 api error에 대해서 처리

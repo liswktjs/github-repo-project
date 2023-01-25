@@ -26,7 +26,6 @@ const Issue = () => {
 	const {
 		issueSearchResult,
 		isIssueSearchLoading,
-		isIssuesSearchError,
 		isIssuesSearchSuccess,
 		searchIssues,
 	} = useGetSearchIssues();
@@ -79,7 +78,7 @@ const Issue = () => {
 
 	return (
 		<Container>
-			<Title>Repository의 Issue들 모아보기</Title>
+			<Title>Repository별로 Issue들 모아보기</Title>
 			<RepoSlider
 				repoList={repoList}
 				handleSearchIssues={handleIssueSearchEvent(pageNumber)}

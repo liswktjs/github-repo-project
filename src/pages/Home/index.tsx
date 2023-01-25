@@ -21,7 +21,6 @@ const Home = () => {
 		repoSearchResult,
 		searchRepo,
 		isRepoSearchLoading,
-		isRepoSearchError,
 		isRepoSearchSuccess,
 	} = useGetSearchRepositories();
 

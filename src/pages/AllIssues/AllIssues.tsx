@@ -16,13 +16,8 @@ import styled from '@emotion/styled';
 const AllIssues = () => {
 	const searchTargetList = store.getRepoInfo() as string[];
 
-	const {
-		allIssues,
-		totalData,
-		isAllIssuesLoading,
-		isAllIssuesError,
-		isAllIssuesSuccess,
-	} = useGetSearchAllIssues({ searchTargetList });
+	const { allIssues, totalData, isAllIssuesLoading, isAllIssuesSuccess } =
+		useGetSearchAllIssues({ searchTargetList });
 
 	const [currentData, setCurrentData] =
 		useState<{ issueItem: IssueItemType; repoName: string }[]>();

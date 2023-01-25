@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { searchAllRepositoriesIssues } from '@/api/search';
 
 import { IssueItemType } from '@/types';
+import { URL } from '@/constants';
 
 interface useGetSearchAllIssuesProps {
 	searchTargetList: string[];
@@ -17,13 +19,14 @@ const useGetSearchAllIssues = ({
 		isLoading: isAllIssuesLoading,
 		isError: isAllIssuesError,
 		isSuccess: isAllIssuesSuccess,
+		error: searchError,
 	} = useQuery<IssueItemType[][]>(['all-issues'], () =>
 		searchAllRepositoriesIssues(searchTargetList),
 	);
-
 	const [totalData, setTotalData] = useState<
 		{ issueItem: IssueItemType; repoName: string }[]
 	>([]);
+	const navigate = useNavigate();
 
 	const isEmptyResult = () => {
 		let isEmpty = true;
@@ -36,6 +39,14 @@ const useGetSearchAllIssues = ({
 		}
 		return isEmpty;
 	};
+
+	useEffect(() => {
+		if (isAllIssuesError) {
+			window.alert(searchError);
+			navigate(URL.HOME);
+			return;
+		}
+	}, [isAllIssuesError]);
 
 	useEffect(() => {
 		if (isAllIssuesSuccess && allIssues && allIssues.length >= 1) {
@@ -64,7 +75,6 @@ const useGetSearchAllIssues = ({
 		allIssues,
 		totalData,
 		isAllIssuesLoading,
-		isAllIssuesError,
 		isAllIssuesSuccess,
 	};
 };

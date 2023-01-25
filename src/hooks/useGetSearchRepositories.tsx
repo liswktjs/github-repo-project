@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { searchRepositories } from '@/api/search';
 
@@ -10,6 +11,7 @@ const useGetSearchRepositories = () => {
 		isError: isRepoSearchError,
 		isSuccess: isRepoSearchSuccess,
 		mutate: searchRepo,
+		error: searchError,
 	} = useMutation<
 		RepoSearchResultType,
 		Error,
@@ -19,11 +21,17 @@ const useGetSearchRepositories = () => {
 		mutationKey: ['repo'],
 	});
 
+	useEffect(() => {
+		if (isRepoSearchError) {
+			window.alert(searchError);
+			return;
+		}
+	}, [isRepoSearchError]);
+
 	return {
 		repoSearchResult,
 		searchRepo,
 		isRepoSearchLoading,
-		isRepoSearchError,
 		isRepoSearchSuccess,
 	};
 };

@@ -12,6 +12,9 @@ export const searchRepositories = async ({
 	const response = await fetch(
 		`${BASE_URL}/search/repositories?q=${searchTarget}&per_page=${PER_PAGE_COUNT}&page=${pageNumber}&sort=stars`,
 	);
+	if (response.status === 403) {
+		throw new Error('Github api의 제한 요청수를 초과하였습니다');
+	}
 	return response.json();
 };
 
@@ -27,6 +30,9 @@ export const searchRepositoriesIssues = async ({
 	const response = await fetch(
 		`${BASE_URL}/repos/${searchTarget}/issues?state=all&per_page=10&page=${pageNumber}`,
 	);
+	if (response.status === 403) {
+		throw new Error('Github api의 제한 요청수를 초과하였습니다');
+	}
 	return response.json();
 };
 
@@ -36,7 +42,10 @@ export const searchAllRepositoriesIssues = async (
 	const fetchList = searchTargetList.map((item) =>
 		fetch(`${BASE_URL}/repos/${item}/issues?state=all`),
 	);
-	return Promise.all(fetchList).then((response) =>
-		Promise.all(response.map((item) => item.json())),
-	);
+	return Promise.all(fetchList).then((response) => {
+		if (response && response[0].status === 403) {
+			throw new Error('Github api의 제한 요청수를 초과하였습니다');
+		}
+		return Promise.all(response.map((item) => item.json()));
+	});
 };
