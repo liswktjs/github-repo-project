@@ -1,7 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from '@/pages/Home';
+import Issue from '@/pages/Issue';
+import AllIssues from '@/pages/AllIssues/AllIssues';
+
 import Header from '@/layout/Header/Header';
-import Issue from './pages/Issue';
 
 const App = () => {
 	return (
@@ -10,6 +12,7 @@ const App = () => {
 			<Routes>
 				<Route path={'/'} element={<Home />} />
 				<Route path={'/issues'} element={<Issue />} />
+				<Route path={'/all-issues'} element={<AllIssues />} />
 			</Routes>
 		</>
 	);

@@ -6,12 +6,13 @@ import { GitHub } from '@mui/icons-material';
 
 import styled from '@emotion/styled';
 import { COLOR } from '@/styles/color';
+import store from '@/store';
 
 const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const [tab, setTab] = useState<'HOME' | 'ISSUE'>('HOME');
+	const [tab, setTab] = useState<'HOME' | 'ISSUE' | 'ALL_ISSUES'>('HOME');
 
 	useEffect(() => {
 		if (location.pathname === '/') {
@@ -19,6 +20,9 @@ const Header = () => {
 		}
 		if (location.pathname === '/issues') {
 			setTab('ISSUE');
+		}
+		if (location.pathname === '/all-issues') {
+			setTab('ALL_ISSUES');
 		}
 	}, [location]);
 
@@ -30,6 +34,15 @@ const Header = () => {
 	const onIssueTabClick = () => {
 		setTab('ISSUE');
 		navigate('/issues');
+	};
+
+	const onAllIssueTabClick = () => {
+		if (store.getRepoInfo().length === 0) {
+			window.alert('repository들을 저장해주세요!');
+			return;
+		}
+		setTab('ALL_ISSUES');
+		navigate('/all-issues');
 	};
 
 	return (
@@ -60,6 +73,12 @@ const Header = () => {
 					label="ISSUE"
 					value="ISSUE"
 					onClick={onIssueTabClick}
+					sx={{ color: `${COLOR.BLACK}`, fontSize: '16px' }}
+				/>
+				<Tab
+					label="ALL_ISSUES"
+					value="ALL_ISSUES"
+					onClick={onAllIssueTabClick}
 					sx={{ color: `${COLOR.BLACK}`, fontSize: '16px' }}
 				/>
 			</Tabs>
