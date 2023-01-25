@@ -1,0 +1,7 @@
+export const COLOR = {
+	ORANGE: '#FADA9D',
+	BLACK: '#111',
+	GARY: '#DDDDDD',
+	ISSUE_CLOSED: '#F9F2ED',
+	ISSUE_OPEN: '#3AB0FF',
+};

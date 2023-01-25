@@ -1,9 +1,11 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction } from 'react';
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import styled from '@emotion/styled';
+
+import { COLOR } from '@/styles/color';
 
 export interface SearchBarProps {
 	searchTarget: string;
@@ -50,6 +52,9 @@ const FormContainer = styled.form`
 
 	min-width: 600px;
 	margin-bottom: 20px;
+
+	padding-bottom: 20px;
+	border-bottom: 1px solid ${COLOR.GARY};
 `;
 
 export default SearchBar;

@@ -3,6 +3,7 @@ import { Avatar, Card, Chip } from '@mui/material';
 import styled from '@emotion/styled';
 
 import { IssueItemType } from '@/types';
+import { COLOR } from '@/styles/color';
 
 export interface IssueCardProps {
 	issue: IssueItemType;
@@ -47,8 +48,8 @@ const IssueCard = ({ issue, repoName }: IssueCardProps) => {
 					<Chip
 						label={issue.state}
 						sx={{
-							backgroundColor: `#${
-								issue.state === 'closed' ? 'F9F2ED' : '3AB0FF'
+							backgroundColor: `${
+								issue.state === 'closed' ? COLOR.ISSUE_CLOSED : COLOR.ISSUE_OPEN
 							}`,
 						}}
 					/>
