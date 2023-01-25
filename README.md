@@ -1,6 +1,6 @@
 ## 배포
 
-firebase를 통해 hosting을 진행하였습니다 
+firebase를 통해 hosting을 진행하였습니다
 
 주소 : https://github-42f2a.web.app/
 
@@ -88,3 +88,29 @@ message: "Only the first 1000 search results are available"
 - [x] 응답값을 받아오는 동안 보여줄 skeleton 구현
 - [x] 개발 과정에서 가장 많이 발생했던 요청 횟수를 넘어 발생하는 api error에 대해서 처리
 - [x] 당장 사용하지 않는 페이지들에 대해서 다이나믹 Import 진행
+
+### 사용한 라이브러리
+
+#### 개발
+
+typescript, react
+
+#### 스타일링
+
+emotion, material UI
+
+#### 상태 관리
+
+react-query
+
+#### 테스트 도구
+
+storybook
+
+#### 번들러
+
+webpack, babel
+
+#### 배포
+
+firebase
