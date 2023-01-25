@@ -1,3 +1,9 @@
+## 배포
+
+firebase를 통해 hosting을 진행하였습니다 
+
+주소 : https://github-42f2a.web.app/
+
 ## 요구사항
 
 ### HOME page
@@ -6,7 +12,7 @@
 - [x] 검색창에 Repository명을 입력해서 Repository를 검색할 수 있다.
 - [x] 검색된 Repository들에 대해서 볼 수 있다
 - [x] 검색된 Public Repository를 등록할 수 있다.
-  - [x] 등록 개수는 최대 4개로 제한하며, 최대 개수 초과 등록 시 이를 스낵브를 활용해 사용자에게 알려준다.
+  - [x] 등록 개수는 최대 4개로 제한하며, 최대 개수 초과 등록 시 이를 사용자에게 알려준다.
   - [x] LocalStorage를 활용하여 등록한 repository에 대한 내용들을 저장한다
 - [x] Repository의 이름과 설명 부분을 클릭하면, 새 탭을 열어 Repository의 창을 보여준다
 
@@ -36,6 +42,9 @@
   - [x] 페이지네이션을 통해서 계속해서 issue를 모아서 볼 수 있다.
 
 #### issue api 관련 문제
+
+깃허브에서 제공하는 isssue조회 api가 2가지 존재하였습니다
+repository 각각의 이슈들을 보여주기 위해 아래와 같은 상황을 고려하였습니다
 
 #### /repos/{owner}/{repo}/issues
 
