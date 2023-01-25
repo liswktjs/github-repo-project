@@ -78,3 +78,4 @@ message: "Only the first 1000 search results are available"
 - [x] 반응형 화면 구현
 - [x] 응답값을 받아오는 동안 보여줄 skeleton 구현
 - [x] 개발 과정에서 가장 많이 발생했던 요청 횟수를 넘어 발생하는 api error에 대해서 처리
+- [x] 당장 사용하지 않는 페이지들에 대해서 다이나믹 Import 진행
