@@ -21,6 +21,7 @@ const IssueCard = ({ issue, repoName }: IssueCardProps) => {
 				<label>repository:</label>
 				{repoName}
 			</RepoName>
+
 			<LabelListContainer>
 				{issue.labels &&
 					issue.labels.map((item) => (
@@ -31,6 +32,7 @@ const IssueCard = ({ issue, repoName }: IssueCardProps) => {
 						/>
 					))}
 			</LabelListContainer>
+
 			<IssueInfoContainer>
 				<UserInfoContainer>
 					<Avatar
@@ -40,6 +42,7 @@ const IssueCard = ({ issue, repoName }: IssueCardProps) => {
 					/>
 					<UserName>{issue.user.login}</UserName>
 				</UserInfoContainer>
+
 				<StateContainer>
 					{'pull_request' in issue && <div>PR</div>}
 					<div>comment</div>

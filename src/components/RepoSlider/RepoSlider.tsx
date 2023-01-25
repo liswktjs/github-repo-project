@@ -57,6 +57,15 @@ const RepoSlider = ({
 		handleSearchIssues(repoList[currentRepoIndex + 1]);
 	};
 
+	const onDeleteButtonClick = () => {
+		if (window.confirm('정말 삭제하시겠습니까?')) {
+			store.toggleRepo({
+				fullName: repoList[currentRepoIndex],
+			});
+			window.location.reload();
+		}
+	};
+
 	return (
 		<Container>
 			<IconButton
@@ -73,16 +82,7 @@ const RepoSlider = ({
 						<p>{repoList[currentRepoIndex]}</p>
 						<ButtonContainer>
 							<IconButton>
-								<DeleteOutlineIcon
-									onClick={() => {
-										if (window.confirm('정말 삭제하시겠습니까?')) {
-											store.toggleRepo({
-												fullName: repoList[currentRepoIndex],
-											});
-											window.location.reload();
-										}
-									}}
-								/>
+								<DeleteOutlineIcon onClick={onDeleteButtonClick} />
 							</IconButton>
 						</ButtonContainer>
 					</RepoContent>

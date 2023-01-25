@@ -7,8 +7,7 @@ export interface LoadingProps {
 }
 
 const Loading = ({ loadingItemCount }: LoadingProps) => {
-	const skeletonArray = Array(loadingItemCount);
-	skeletonArray.fill(1);
+	const skeletonArray = Array(loadingItemCount).fill(1);
 
 	return (
 		<ResponsiveList>

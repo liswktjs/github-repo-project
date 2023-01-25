@@ -36,9 +36,7 @@ const SearchBar = ({
 			<IconButton
 				aria-label="검색버튼"
 				type="submit"
-				onClick={() => {
-					onSearchButtonClick();
-				}}
+				onClick={onSearchButtonClick}
 			>
 				<SearchIcon sx={{ fontSize: 35 }} />
 			</IconButton>
