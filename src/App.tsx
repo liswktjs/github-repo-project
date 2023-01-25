@@ -4,15 +4,16 @@ import Issue from '@/pages/Issue';
 import AllIssues from '@/pages/AllIssues/AllIssues';
 
 import Header from '@/layout/Header/Header';
+import { URL } from '@/constants';
 
 const App = () => {
 	return (
 		<>
 			<Header />
 			<Routes>
-				<Route path={'/'} element={<Home />} />
-				<Route path={'/issues'} element={<Issue />} />
-				<Route path={'/all-issues'} element={<AllIssues />} />
+				<Route path={URL.HOME} element={<Home />} />
+				<Route path={URL.ISSUE} element={<Issue />} />
+				<Route path={URL.ALL_ISSUES} element={<AllIssues />} />
 			</Routes>
 		</>
 	);

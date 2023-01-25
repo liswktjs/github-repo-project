@@ -7,6 +7,7 @@ import { GitHub } from '@mui/icons-material';
 import styled from '@emotion/styled';
 import { COLOR } from '@/styles/color';
 import store from '@/store';
+import { URL } from '@/constants';
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -15,25 +16,25 @@ const Header = () => {
 	const [tab, setTab] = useState<'HOME' | 'ISSUE' | 'ALL_ISSUES'>('HOME');
 
 	useEffect(() => {
-		if (location.pathname === '/') {
+		if (location.pathname === URL.HOME) {
 			setTab('HOME');
 		}
-		if (location.pathname === '/issues') {
+		if (location.pathname === URL.ISSUE) {
 			setTab('ISSUE');
 		}
-		if (location.pathname === '/all-issues') {
+		if (location.pathname === URL.ALL_ISSUES) {
 			setTab('ALL_ISSUES');
 		}
 	}, [location]);
 
 	const onHomeTabClick = () => {
 		setTab('HOME');
-		navigate('/');
+		navigate(URL.HOME);
 	};
 
 	const onIssueTabClick = () => {
 		setTab('ISSUE');
-		navigate('/issues');
+		navigate(URL.ISSUE);
 	};
 
 	const onAllIssueTabClick = () => {
@@ -42,7 +43,7 @@ const Header = () => {
 			return;
 		}
 		setTab('ALL_ISSUES');
-		navigate('/all-issues');
+		navigate(URL.ALL_ISSUES);
 	};
 
 	return (
