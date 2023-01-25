@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Tab, Tabs } from '@mui/material';
-import { Box } from '@mui/system';
+import { Paper, Tab, Tabs } from '@mui/material';
 import { GitHub } from '@mui/icons-material';
 
 import styled from '@emotion/styled';
+import { COLOR } from '@/styles/color';
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -33,43 +33,37 @@ const Header = () => {
 	};
 
 	return (
-		<Box
+		<Paper
 			role={'heading'}
+			elevation={3}
 			sx={{
 				display: 'flex',
 				justifyContent: 'space-around',
 				paddingTop: '10px',
-				backgroundColor: '#F9F2ED',
+				backgroundColor: `${COLOR.ORANGE}`,
 			}}
 		>
-			<ProjectName>
+			<ProjectName onClick={onHomeTabClick}>
 				<IconContainer>
 					<GitHub fontSize="large" />
 				</IconContainer>
 				Github Repo Project
 			</ProjectName>
-			<Tabs
-				value={tab}
-				TabIndicatorProps={{
-					style: {
-						backgroundColor: '#3AB0FF',
-					},
-				}}
-			>
+			<Tabs value={tab} textColor="secondary" indicatorColor="secondary">
 				<Tab
 					label="HOME"
 					value="HOME"
 					onClick={onHomeTabClick}
-					sx={{ color: 'black' }}
+					sx={{ color: `${COLOR.BLACK}`, fontSize: '16px' }}
 				/>
 				<Tab
 					label="ISSUE"
 					value="ISSUE"
 					onClick={onIssueTabClick}
-					sx={{ color: 'black' }}
+					sx={{ color: `${COLOR.BLACK}`, fontSize: '16px' }}
 				/>
 			</Tabs>
-		</Box>
+		</Paper>
 	);
 };
 
@@ -77,6 +71,11 @@ const ProjectName = styled.h2`
 	display: flex;
 	padding: 10px;
 	margin: 0;
+
+	&:hover,
+	&:active {
+		cursor: pointer;
+	}
 `;
 
 const IconContainer = styled.span`
