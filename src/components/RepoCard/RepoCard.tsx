@@ -7,6 +7,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import styled from '@emotion/styled';
 
 import { RepoItemType } from '@/types';
+import store from '@/store';
 
 export interface RepoCardProps {
 	repo: RepoItemType;
@@ -49,6 +50,15 @@ const RepoCard = ({ repo, isSaved, onRepoAddButtonClick }: RepoCardProps) => {
 					<IconButton
 						aria-label="repository 저장하기"
 						onClick={() => {
+							if (
+								!isSaved &&
+								store.getRepoInfo() &&
+								store.getRepoInfo().length === 4
+							) {
+								window.alert('최대 4개까지 저장이 가능합니다');
+								setIsSavedRepo(false);
+								return;
+							}
 							onRepoAddButtonClick();
 							setIsSavedRepo(!isSavedRepo);
 						}}
